@@ -1,8 +1,13 @@
+const dotenv = require('dotenv')
+dotenv.config();
 const express = require('express');
 const axios = require('axios');
 const Sentiment = require('sentiment');
 const app = express();
 const PORT = 5000;
+
+
+
 // Import cors
 const cors = require('cors');
 // const { count } = require('console');
@@ -16,7 +21,7 @@ app.use(express.json());
 app.post('/analyze', async (req, res) => {
   const { url } = req.body;
   const videoId = new URL(url).searchParams.get('v');
-  const API_KEY = 'AIzaSyDWtCz4vuO048VIYBbxaI5Q476bvUmZ12s';
+  const API_KEY = process.env.API_KEY;
   const sentiment = new Sentiment();
 
   try {
